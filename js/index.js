@@ -1,6 +1,6 @@
 /*
-* Programe Name: Typing Helper
-* Developed in: 8/7/2018
+* Program Name: Typing Test
+* Developed in: 8/6/2018
 * Developed by: Othman Aladlan
 * This is a elegant Web Application to measure the speed of your typing and give you the result
 * of how many right words, wrong words, and your words per minute rate, the app came with dark apperance.
@@ -8,7 +8,7 @@
 
 
 // global vars
-var space = 32, enter = 13, time = 59, t = 0;
+var space = 32, enter = 13, time = 59, t = 0, tr = 0;
 var playing = false, right = 0, wrong = 0;
 var total = 0; // total number of words
 var count = 0; // total right characters
@@ -81,7 +81,7 @@ $(document).ready(function(){
         // start the timer to start the typing
         if(!playing){
             playing = true;
-            setTimeout("play()", 1000);
+            tr = setTimeout("play()", 1000);
         }
 
         // get the pressed key
@@ -127,7 +127,7 @@ function play() {
 
     // if it's playing and the time isn't out
     if (playing && time > 0) {
-        setTimeout("play()", 1000);
+        tr = setTimeout("play()", 1000);
     } else {
         // if the time out
         finish();
@@ -196,6 +196,8 @@ function prepare_par() {
 }
 
 function reset() {
+    clearTimeout(tr);
+    playing= false;//stop 
     indic = 0; // reset the indicator
     // reset the timer
     time = 59;
